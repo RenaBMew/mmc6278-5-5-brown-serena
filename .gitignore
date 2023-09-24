@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+.DS_Store
+Adding_MySQL_to_Heroku.md
+INSTRUCTIONS.md
