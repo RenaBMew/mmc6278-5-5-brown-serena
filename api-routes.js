@@ -10,7 +10,7 @@ router
       FROM inventory`
     );
     // res.json(inventory).status(204).end();
-    if (inventory) res.json(inventory).status(204).end();
+    if (inventory) res.json(inventory);
     else res.status(404).send("Inventory not found");
   })
   // TODO: Create a GET route that returns a list of everything in the inventory table
@@ -33,7 +33,7 @@ router
       `INSERT INTO inventory (price, quantity, name, image, description) VALUES (?, ?, ?, ?, ?)`,
       [price, quantity, name, image, description]
     );
-    if (item) res.status(204).end();
+    if (item) res.status(204).send("Item Created.");
     else res.status(404).send("Inventory not found");
   });
 // TODO: Create a POST route that inserts inventory items
@@ -47,7 +47,7 @@ router
     const [[item]] = await db.query(`SELECT * FROM inventory WHERE id=?`, [
       req.params.id,
     ]);
-    if (item) res.json(item).status(204).end();
+    if (item) res.json(item);
     else res.status(404).send("Item not found");
   })
   // TODO: Write a GET route that returns a single item from the inventory
@@ -68,7 +68,7 @@ router
       `UPDATE inventory SET ? WHERE id = ?`,
       [{ price, quantity, name, image, description }, req.params.id]
     );
-    if (affectedRows === 1) res.status(204).end();
+    if (affectedRows !== 0) res.status(204).send("Inventory Updated");
     else res.status(404).send("Item not found");
   })
   // TODO: Create a PUT route that updates the inventory table based on the id
@@ -82,7 +82,7 @@ router
       `DELETE FROM inventory WHERE id=?`,
       [req.params.id]
     );
-    if (affectedRows === 1) res.status(204).end();
+    if (affectedRows !== 0) res.status(204).send("Inventory Updated");
     else res.status(404).send("Item not found");
   });
 // TODO: Create a DELETE route that deletes an item from the inventory table
