@@ -2,6 +2,6 @@
 
 I just want some REST API
 
-### Final Result - 23/23 Passing
+### Final Result - 32/32 Passing
 
 ![Final](./passing.png "Passing")
